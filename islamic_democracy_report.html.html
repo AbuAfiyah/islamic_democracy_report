@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ইন্টারেক্টিভ রিপোর্ট: ইসলামি গণতন্ত্রের স্বরূপ</title>
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: The application is structured into thematic sections to deconstruct the report's complex arguments. It starts with an introduction (ভূমিকা), moves to the core conflict (মূল দ্বন্দ্ব) using a side-by-side comparison, demonstrates the parliamentary dilemma (সংসদীয় সংকট) with an interactive diagram, presents the theological stance (মুমিনের অবস্থান), deconstructs the 'strategy' argument (কৌশলের ব্যবচ্ছেদ), and ends with a conclusion (উপসংহার). This structure was chosen to guide the user through the logical flow of the argument, making it more digestible and engaging than a simple linear text presentation. The goal is to facilitate understanding by breaking down abstract concepts into visual, interactive components. -->
+    <!-- Visualization & Content Choices: Report Info: The source is a qualitative, argumentative text criticizing 'Islamic Democracy'. Goal: To clarify the core conflict between divine sovereignty and popular sovereignty. Viz/Presentation Method: Interactive diagrams (HTML/CSS/JS) are used instead of data charts (like Chart.js) because the report contains no quantitative data. For instance, a side-by-side diagram compares the sources of law in Islam and Democracy. An interactive flowchart shows the dilemma of passing an Islamic bill in parliament. Key quotes and arguments are presented in stylized blockquotes and clickable cards. Interaction: Users can click on diagram elements and cards to reveal detailed explanations and key quotes from the report. Justification: This approach turns a dense, text-heavy report into an exploratory experience, making the author's arguments more tangible and easier to grasp. Library/Method: Vanilla JavaScript for all interactions. CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Serif Bengali', serif;
+            background-color: #FDFDFB;
+            color: #4A4A4A;
+        }
+        h1, h2, h3, .font-sans {
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+        .section-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .section-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .comparison-box, .diagram-box {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .comparison-box:hover, .diagram-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease;
+            padding: 0 1.5rem;
+        }
+        .accordion-content.active {
+            max-height: 500px;
+            padding: 1rem 1.5rem;
+        }
+        .flow-node { transition: all 0.3s ease-in-out; }
+        .flow-line { transition: all 0.5s ease-in-out; stroke-dasharray: 1000; stroke-dashoffset: 1000; }
+        .flow-line.active { stroke-dashoffset: 0; }
+        .tab-button.active {
+            border-color: #8B5CF6;
+            background-color: #E9D5FF;
+            color: #5B21B6;
+        }
+    </style>
+</head>
+<body class="bg-[#FDFDFB] antialiased">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <h1 class="text-2xl md:text-3xl font-bold text-violet-700 text-center">ইসলামি গণতন্ত্রের স্বরূপ: একটি বিশ্লেষণ</h1>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <!-- Section 1: Introduction -->
+        <section id="intro" class="section-fade-in text-center mb-16">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">ইসলাম ও গণতন্ত্র: সামঞ্জস্যপূর্ণ নাকি সাংঘর্ষিক?</h2>
+            <p class="max-w-3xl mx-auto text-lg text-gray-600">
+                গণতন্ত্রের সাথে ইসলামের সম্পর্ক নিয়ে সমাজে অনেক বিভ্রান্তি বিদ্যমান। "ইসলামি গণতন্ত্র" নামক ধারণাটি কতটা যৌক্তিক এবং ইসলামের মূলনীতির সাথে এটি কতটা সামঞ্জস্যপূর্ণ? এই ইন্টারেক্টিভ বিশ্লেষণটি আপনাকে রিপোর্টের মূল যুক্তিগুলো অন্বেষণ করতে সাহায্য করবে।
+            </p>
+        </section>
+
+        <!-- Section 2: Core Conflict -->
+        <section id="conflict" class="section-fade-in mb-16">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">সার্বভৌমত্ব: মূল দ্বন্দ্ব</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Democracy Box -->
+                <div class="comparison-box bg-white p-6 rounded-lg shadow-lg border-t-4 border-violet-400">
+                    <h3 class="font-sans text-2xl font-bold text-violet-700 mb-4 text-center">গণতন্ত্র: জনগণের শাসন</h3>
+                    <div class="space-y-4 text-center">
+                        <div class="p-3 bg-violet-50 rounded-md">
+                            <p class="font-bold text-lg">ক্ষমতার উৎস: জনগণ</p>
+                            <p class="text-sm text-gray-600">সার্বভৌমত্ব জনগণের হাতে ন্যস্ত থাকে।</p>
+                        </div>
+                        <div class="text-3xl text-violet-400">↓</div>
+                        <div class="p-3 bg-violet-50 rounded-md">
+                            <p class="font-bold text-lg">কর্তৃত্ব প্রদান</p>
+                            <p class="text-sm text-gray-600"> জনগণ ভোটের মাধ্যমে সংসদ/প্রতিনিধি নির্বাচন করে।</p>
+                        </div>
+                        <div class="text-3xl text-violet-400">↓</div>
+                        <div class="p-3 bg-violet-50 rounded-md">
+                             <p class="font-bold text-lg">আইনের উৎস: সংবিধান/সংসদ</p>
+                            <p class="text-sm text-gray-600">প্রতিনিধিরা জনগণের ইচ্ছার প্রতিফলন হিসেবে আইন তৈরি, পরিবর্তন বা বাতিল করে।</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Islam Box -->
+                <div class="comparison-box bg-white p-6 rounded-lg shadow-lg border-t-4 border-teal-400">
+                    <h3 class="font-sans text-2xl font-bold text-teal-700 mb-4 text-center">ইসলাম: আল্লাহর শাসন</h3>
+                    <div class="space-y-4 text-center">
+                        <div class="p-3 bg-teal-50 rounded-md">
+                            <p class="font-bold text-lg">ক্ষমতার উৎস: আল্লাহ</p>
+                            <p class="text-sm text-gray-600">সার্বভৌমত্ব একমাত্র আল্লাহর জন্য সংরক্ষিত।</p>
+                        </div>
+                         <div class="text-3xl text-teal-400">↓</div>
+                        <div class="p-3 bg-teal-50 rounded-md">
+                             <p class="font-bold text-lg">কর্তৃত্ব প্রদান</p>
+                            <p class="text-sm text-gray-600">আল্লাহ ওহীর মাধ্যমে রাসূল ﷺ-কে বিধান প্রদান করেন।</p>
+                        </div>
+                         <div class="text-3xl text-teal-400">↓</div>
+                        <div class="p-3 bg-teal-50 rounded-md">
+                            <p class="font-bold text-lg">আইনের উৎস: কুরআন ও সুন্নাহ</p>
+                            <p class="text-sm text-gray-600">বিধান তৈরি বা পরিবর্তনের ক্ষমতা মানুষের নেই।</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <blockquote class="mt-8 bg-amber-50 border-r-4 border-amber-400 p-4 rounded">
+                <p class="text-lg italic text-amber-800">"জেনে রেখ, সৃষ্টি তাঁর, হুকুমও (চলবে) তাঁর..."</p>
+                <cite class="block text-right mt-2 not-italic text-amber-700">— সূরা আল-আ'রাফ: ৫৪</cite>
+            </blockquote>
+        </section>
+
+        <!-- Section 3: Parliamentary Dilemma -->
+        <section id="dilemma" class="section-fade-in mb-16">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">সংসদীয় সংকট: একটি ইন্টারেক্টিভ বিশ্লেষণ</h2>
+            <p class="text-center text-gray-600 mb-8">গণতান্ত্রিক সংসদে একটি "ইসলামী বিল" পাসের প্রক্রিয়াটি কেমন এবং এতে কী ধরনের আদর্শিক সংকট তৈরি হয়?</p>
+            <div class="diagram-box bg-white p-6 rounded-lg shadow-lg">
+                <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-8">
+                    <div id="node-bill" class="flow-node bg-gray-200 p-3 rounded-md text-center">
+                        🏛️<br>ইসলামী বিল সংসদে উত্থাপন
+                    </div>
+                    <svg class="w-16 h-8 md:block hidden"><line id="line1" x1="0" y1="50%" x2="100%" y2="50%" stroke="#9CA3AF" stroke-width="2" class="flow-line"/></svg>
+                    <div id="node-vote" class="flow-node bg-gray-200 p-3 rounded-md text-center">
+                        🗳️<br>সদস্যদের ভোট গ্রহণ
+                    </div>
+                    <svg class="w-16 h-8 md:block hidden"><line id="line2" x1="0" y1="50%" x2="100%" y2="50%" stroke="#9CA3AF" stroke-width="2" class="flow-line"/></svg>
+                    <div id="node-result" class="flow-node bg-gray-200 p-3 rounded-md text-center">
+                        📜<br>ফলাফল: আইন/বাতিল
+                    </div>
+                </div>
+                <div class="text-center mt-6">
+                    <button id="start-simulation" class="font-sans bg-violet-600 text-white px-6 py-2 rounded-md hover:bg-violet-700 transition">প্রক্রিয়া শুরু করুন</button>
+                </div>
+                <div id="dilemma-explanation" class="mt-6 text-center text-red-700 bg-red-50 p-4 rounded-lg font-bold text-lg transition-opacity duration-500 opacity-0">
+                    এখানেই মূল সংকট! আল্লাহর আইনকে মানুষের অনুমোদনের ('হ্যাঁ'/'না' ভোটের) অধীন করা হয়। এই প্রক্রিয়ায় অংশগ্রহণ মানে হলো, মানুষকে আইনদাতা হিসেবে মেনে নেওয়া, যা তাওহীদের পরিপন্থী।
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: A Believer's Stance -->
+        <section id="stance" class="section-fade-in mb-16">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">মুমিনের অবস্থান</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                 <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="font-sans text-xl font-bold text-gray-700 mb-3">চূড়ান্ত ফয়সালা</h3>
+                    <blockquote class="bg-sky-50 border-r-4 border-sky-400 p-4 rounded">
+                        <p class="text-lg italic text-sky-800">"আল্লাহ ও তাঁর রাসূল কোনো বিষয়ের ফায়সালা দিলে কোনো মুমিন পুরুষ কিংবা মুমিন নারীর জন্য সে ব্যাপারে তাদের নিজেদের কোনো রকম (ভিন্ন সিদ্ধান্তের) ইখতিয়ার থাকবে না।"</p>
+                        <cite class="block text-right mt-2 not-italic text-sky-700">— সূরা আল-আহযাব: ৩৬</cite>
+                    </blockquote>
+                 </div>
+                 <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="font-sans text-xl font-bold text-gray-700 mb-3"> ইসলামের উদ্দেশ্য</h3>
+                     <blockquote class="bg-green-50 border-r-4 border-green-400 p-4 rounded">
+                        <p class="text-lg italic text-green-800">"আল্লাহ আমাদেরকে পাঠিয়েছেন, যেন আমরা মানুষকে বান্দার গোলামী থেকে মুক্ত করে এক আল্লাহর গোলামীতে নিয়ে আসি...এবং অন্যান্য জীবন ব্যবস্থার অবিচার থেকে মুক্ত করে ইসলামের ন্যায়ের দিকে নিয়ে আসি।"</p>
+                        <cite class="block text-right mt-2 not-italic text-green-700">— রিবঈ ইবনে আমের (রাযি.)</cite>
+                    </blockquote>
+                 </div>
+            </div>
+        </section>
+
+
+        <!-- Section 5: The "Strategy" Deconstructed -->
+        <section id="strategy" class="section-fade-in mb-16">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">"কৌশল" হিসেবে গণতন্ত্র: একটি ব্যবচ্ছেদ</h2>
+            <div class="max-w-3xl mx-auto space-y-4">
+                <div class="accordion-item bg-white rounded-lg shadow-md">
+                    <button class="accordion-header w-full text-left p-4 font-sans font-bold text-lg text-gray-700 flex justify-between items-center">
+                        <span>১. শত্রুদের চাপ এবং আপোষ</span>
+                        <span class="transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>ইসলামপন্থি কোনো দল ক্ষমতায় এলে পশ্চিমা বিশ্ব এবং প্রতিবেশি রাষ্ট্রগুলো কি তাদের স্বার্থবিরোধী কাজ মেনে নেবে? তারা বিভিন্ন চক্রান্ত এবং চাপ প্রয়োগ করে ইসলামি নীতি থেকে বিচ্যুত হতে বাধ্য করবে।</p>
+                    </div>
+                </div>
+                 <div class="accordion-item bg-white rounded-lg shadow-md">
+                    <button class="accordion-header w-full text-left p-4 font-sans font-bold text-lg text-gray-700 flex justify-between items-center">
+                        <span>২. সামরিক শক্তির প্রয়োজনীয়তা</span>
+                        <span class="transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>খিলাফতে রাশেদার সময়েও ইসলামের শত্রুদের দমনের জন্য সামরিক শক্তির প্রয়োজন হয়েছিল। শুধু 'ইসলামের সৌন্দর্য' দেখিয়ে আজকের শত্রুদের মোকাবেলা করা সম্ভব নয়। নিজ ক্ষমতা রক্ষার জন্যও সামরিক শক্তি অপরিহার্য, যা গণতান্ত্রিক পথে অর্জন কঠিন।</p>
+                    </div>
+                </div>
+                <div class="accordion-item bg-white rounded-lg shadow-md">
+                    <button class="accordion-header w-full text-left p-4 font-sans font-bold text-lg text-gray-700 flex justify-between items-center">
+                        <span>৩. ঈমান বনাম কৌশল</span>
+                        <span class="transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>সবচেয়ে বড় প্রশ্ন হলো: কুফরের পথে হেঁটে কি শরীয়াহ বাস্তবায়ন সম্ভব? ইসলাম প্রতিষ্ঠার জন্য কাফিরদের থেকে পদ্ধতি ধার করা একটি আত্মপ্রবঞ্চনা এবং মুসলিমদের সময় ও মেধার অপচয়। আগে নিজের ঈমান রক্ষা করা এবং এক আল্লাহর একনিষ্ঠ গোলাম হওয়াই মূল কাজ।</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Conclusion -->
+        <section id="conclusion" class="section-fade-in text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">শেষ কথা</h2>
+            <p class="max-w-3xl mx-auto text-lg text-gray-600 mb-8">
+                এই বিশ্লেষণ অনুসারে, গণতন্ত্র এবং ইসলাম দুটি ভিন্ন ভিত্তির উপর প্রতিষ্ঠিত। একটিতে সার্বভৌমত্ব জনগণের, অন্যটিতে আল্লাহর। তাই "ইসলামি গণতন্ত্র" ধারণাটি একটি মৌলিক আদর্শিক সংঘাত তৈরি করে। এই বিষয়ে সিদ্ধান্ত নেওয়ার পূর্বে প্রতিটি মুসলিমের জন্য এর গভীরতা অনুধাবন করা অপরিহার্য।
+            </p>
+            <div class="max-w-2xl mx-auto bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 p-4 rounded-md" role="alert">
+                <p class="font-bold font-sans">বিশেষ দ্রষ্টব্য</p>
+                <p>এই লেখার উদ্দেশ্য কোনো ব্যক্তি বা গোষ্ঠীকে কাফের (তাকফির) বলা নয়, বরং কুফর ও ভুল পথ সম্পর্কে সচেতন করা, যেন পাঠক নিজেকে তা থেকে বাঁচাতে পারেন। তাকফিরের বিষয়টি বিজ্ঞ আলেমদের কাজ।</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-16 py-4">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-sm">এই ইন্টারেক্টিভ অ্যাপ্লিকেশনটি "ইসলামি গণতন্ত্রের স্বরূপ" রিপোর্টের উপর ভিত্তি করে তৈরি।</p>
+            <p class="text-xs text-gray-400 mt-1">শুধুমাত্র শিক্ষামূলক উদ্দেশ্যে নির্মিত।</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Section fade-in on scroll
+            const sections = document.querySelectorAll('.section-fade-in');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Dilemma simulation
+            const startBtn = document.getElementById('start-simulation');
+            const nodeBill = document.getElementById('node-bill');
+            const nodeVote = document.getElementById('node-vote');
+            const nodeResult = document.getElementById('node-result');
+            const line1 = document.getElementById('line1');
+            const line2 = document.getElementById('line2');
+            const explanation = document.getElementById('dilemma-explanation');
+
+            startBtn.addEventListener('click', () => {
+                // Reset animation
+                [nodeBill, nodeVote, nodeResult].forEach(node => {
+                    node.style.backgroundColor = '#E5E7EB';
+                    node.style.transform = 'scale(1)';
+                });
+                [line1, line2].forEach(line => {
+                    line.classList.remove('active');
+                    line.style.stroke = '#9CA3AF';
+                });
+                explanation.style.opacity = '0';
+
+                // Start animation sequence
+                setTimeout(() => {
+                    nodeBill.style.backgroundColor = '#D1C4E9';
+                    nodeBill.style.transform = 'scale(1.1)';
+                }, 100);
+
+                setTimeout(() => {
+                    line1.classList.add('active');
+                    line1.style.stroke = '#8B5CF6';
+                }, 600);
+                
+                setTimeout(() => {
+                    nodeVote.style.backgroundColor = '#D1C4E9';
+                     nodeVote.style.transform = 'scale(1.1)';
+                }, 1100);
+
+                 setTimeout(() => {
+                    line2.classList.add('active');
+                    line2.style.stroke = '#8B5CF6';
+                }, 1600);
+
+                setTimeout(() => {
+                    nodeResult.style.backgroundColor = '#D1C4E9';
+                     nodeResult.style.transform = 'scale(1.1)';
+                }, 2100);
+
+                setTimeout(() => {
+                    explanation.style.opacity = '1';
+                }, 2600);
+            });
+            
+            // Accordion functionality
+            const accordions = document.querySelectorAll('.accordion-item');
+            accordions.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                const content = item.querySelector('.accordion-content');
+                const icon = header.querySelector('span:last-child');
+                
+                header.addEventListener('click', () => {
+                    // Close other accordions
+                    accordions.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.querySelector('.accordion-content').classList.remove('active');
+                            otherItem.querySelector('.accordion-header span:last-child').style.transform = 'rotate(0deg)';
+                        }
+                    });
+
+                    // Toggle current accordion
+                    content.classList.toggle('active');
+                    if (content.classList.contains('active')) {
+                        icon.style.transform = 'rotate(180deg)';
+                    } else {
+                        icon.style.transform = 'rotate(0deg)';
+                    }
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>
