@@ -1,1 +1,1 @@
-# islamic_democracy_report
+# islamic-democracy-report
